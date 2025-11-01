@@ -1,5 +1,7 @@
 ﻿string carro, valet, lavagem;
-decimal valorValet, estacionamento, valorLavagem, total, minutos, horas;
+decimal valorValet, estacionamento, valorLavagem;
+decimal total, minutos, horas;
+decimal primeiraHora = 20;
 
 //Pegando informações sobre quem estacionou
 Console.Write($"Tamanho do veículo (P/G).....: ");
@@ -22,7 +24,6 @@ if (carro != "P" && carro != "G")
     return;
 }
 
-
 if (horas > 12) // se for maior que 12h, não ficou o tempo adequado
 {
     Console.WriteLine("O veículo não pode ficar estacionado mais que 12 horas no local.");
@@ -42,7 +43,7 @@ else
             estacionamento = 50;
 
         }
-        else estacionamento = ((horas - 1) * 10) + 20;
+        else estacionamento = ((horas - 1) * 10) + primeiraHora;
 
     }
     else  //Carro grande
@@ -53,7 +54,7 @@ else
 
         }
         // ficou menos que a diária
-        else estacionamento = ((horas - 1) * 20) + 20;
+        else estacionamento = ((horas - 1) * 20) + primeiraHora;
 
     }
 
