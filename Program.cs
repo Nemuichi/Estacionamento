@@ -16,6 +16,12 @@ valet = Console.ReadLine()!.Trim().Substring(0, 1).ToUpper();
 Console.Write($"Serviço de lavagem (S/N).....: ");
 lavagem = Console.ReadLine()!.Trim().Substring(0, 1).ToUpper();
 
+if (carro != "P" && carro != "G")
+{
+    Console.WriteLine("Tamanho inválido.");
+    return;
+}
+
 
 if (horas > 12) // se for maior que 12h, não ficou o tempo adequado
 {
@@ -27,7 +33,7 @@ else if (minutos <= 5)
 }
 else
 {
-    
+
     if (carro == "P") //Carro pequeno
     {
 
@@ -36,7 +42,7 @@ else
             estacionamento = 50;
 
         }
-        else estacionamento = ((horas-1) * 10) + 20;
+        else estacionamento = ((horas - 1) * 10) + 20;
 
     }
     else  //Carro grande
@@ -47,7 +53,7 @@ else
 
         }
         // ficou menos que a diária
-        else estacionamento = ((horas-1) * 20) + 20;
+        else estacionamento = ((horas - 1) * 20) + 20;
 
     }
 
@@ -69,10 +75,8 @@ else
     total = estacionamento + valorValet + valorLavagem;
 
     Console.WriteLine($"Estacionamento..:       R$ {estacionamento:N2}  ");
-
     Console.WriteLine($"Valet...........:       R$ {valorValet:N2}  ");
-
-    Console.WriteLine($"Lavagem.........:   R$ {valorLavagem:N2}\n  ");
+    Console.WriteLine($"Lavagem.........:       R$ {valorLavagem:N2}\n");
     Console.WriteLine("--------------------------------");
     Console.WriteLine($"Total...........:       R$ {total:N2}  ");
 }
