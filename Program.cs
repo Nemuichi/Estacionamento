@@ -1,29 +1,5 @@
-﻿/*
-regras
-1h = 20 reais
-carros grandes +20/h
-carros pequenos +10/h
-
-diárias (5h ou mais)
-carros grandes +80
-Carros pequenos +50
-
-Tolerância na saída 5min
-
-Valet (manobrista) 20% adicional no valor
-
-Lavagem
-carro grande 100 conto
-carro pequeno 50
-
-tempo de permanência nn pode passar de 12h
-
-*/
-
-string carro, valet, lavagem;
-bool tamanhoCarro, fezValet, fezLavagem;
+﻿string carro, valet, lavagem;
 decimal valorValet, estacionamento, valorLavagem, total, minutos, horas;
-
 
 //Pegando informações sobre quem estacionou
 Console.Write($"Tamanho do veículo (P/G).....: ");
@@ -45,52 +21,58 @@ if (horas > 12) // se for maior que 12h, não ficou o tempo adequado
 {
     Console.WriteLine("O veículo não pode ficar estacionado mais que 12 horas no local.");
 }
-else if (minutos == 5)
+else if (minutos <= 5)
 {
     Console.WriteLine("Não ficou tempo o suficiente para pagar");
 }
 else
 {
-
-    if (tamanhoCarro = carro == "P") //Carro pequeno
+    
+    if (carro == "P") //Carro pequeno
     {
 
-        if (horas <= 12 && horas >= 5) //se menor que 12, quer dizer que o carro ficou o tempo adequado
+        if (horas >= 5) //deu o tempo da diária, trava em 50
         {
             estacionamento = 50;
 
         }
-        else estacionamento = (horas * 10) + 20; ;
+        else estacionamento = ((horas-1) * 10) + 20;
 
     }
     else  //Carro grande
     {
-        if (horas <= 12 && horas >= 5) //se menor que 12 e maior ou igual a 5, quer dizer que o carro ficou o tempo adequado da diária
+        if (horas >= 5) //deu o tempo da diária, trava em 80
         {
             estacionamento = 80;
 
         }
         // ficou menos que a diária
-        else estacionamento = (horas * 20) + 20;
+        else estacionamento = ((horas-1) * 20) + 20;
 
     }
-    if (fezValet = valet == "S") //verificando se fez valet
+
+
+    if (valet == "S") //verificando se fez valet
     {
-        
+
         valorValet = (estacionamento * 20) / 100;
     }
     else valorValet = 0;
- 
-        total = estacionamento + valorValet;
 
-    Console.WriteLine($"Estacionamento..:       {estacionamento}");
+    if (lavagem == "S") //fez lavagem?
+    {
+        valorLavagem = 100; //paga 100
+    }
+    else valorLavagem = 0;
 
-    Console.WriteLine($"Valet...........:        R$ 0,00");
 
-    Console.WriteLine($"Lavagem.........:        R$ 0,00\n");
+    total = estacionamento + valorValet + valorLavagem;
+
+    Console.WriteLine($"Estacionamento..:       R$ {estacionamento:N2}  ");
+
+    Console.WriteLine($"Valet...........:       R$ {valorValet:N2}  ");
+
+    Console.WriteLine($"Lavagem.........:   R$ {valorLavagem:N2}\n  ");
     Console.WriteLine("--------------------------------");
-    Console.WriteLine($"Total...........:       {total}");
-
-
-
+    Console.WriteLine($"Total...........:       R$ {total:N2}  ");
 }
