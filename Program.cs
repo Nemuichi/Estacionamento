@@ -10,7 +10,7 @@ carro = Console.ReadLine()!.Trim().Substring(0, 1).ToUpper();
 
 Console.Write($"Tempo de permanência (min)...: ");
 minutos = Convert.ToDecimal(Console.ReadLine()!);
-horas = Math.Floor(minutos/60);
+horas = Math.Round(minutos/60, MidpointRounding.AwayFromZero);
 
 Console.Write($"Serviço de valet (S/N).......: ");
 valet = Console.ReadLine()!.Trim().Substring(0, 1).ToUpper();
